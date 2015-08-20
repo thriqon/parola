@@ -1,6 +1,6 @@
 {
   "name": "parola",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extremely small conformant Promises/A+ implementation",
   "main": "parola.min.js",
   "scripts": {
