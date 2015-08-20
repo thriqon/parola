@@ -1,0 +1,19 @@
+
+language: node_js
+
+cache:
+  directories:
+  - node_modules
+
+script:
+- npm run build
+- npm test
+
+deploy:
+  provider: npm
+  email: mail@jonasw.de
+  api_key:
+    secure: nYCPe0SNirl+1tekh8CDtNXAbxTuAvb3WBSOZNlqzXDDoYQ+HCgQ+KlDVrgAXVEIE7Ko26nnGjLDgQQfTkT2idol95aRaVUjNNZ+sCGWICWjm+mr6p2amaOwqkw0TiCRqIJ9ez1u4iePe5E6YwmepD9e0659CrRxScDDURjjAE19qYpyCQD5SQ+R2vRkloVgS0PhpHtOMsJDpofAmCWMxTqf38475CO+UYfSF1ehxVOIcV20+gj8W3NxessGhCBRITevlxImyBzxsi0smxCMVIT1PgdVE6+PIDj6ZQwC1V6vyfWvwC2l6Z3+fQx/pQIU7R6h07/ik/e4qGFcIVvfA8Rb87gSd2Q6ooVa83eJfOMsjt904cnsU7TKuyLyC5osjUu+Xudo+/q/YjxiNr11OhQrHML2oxpWkciuYvLzd35+eJ6/M4Kmx75TjO3zOKJaBIjc8Se3lM80NPAlzYEeL7ZUumwS64VU7vJCjs5C/qn8kHQjGYOHrZY94qxizkEkvVH6Yo2wGzYFgC8nwwp3p5l0LsctAcW5MCs+O8tpZ4mqlMAJ/ZfaOCm6qnCR/ij1g7AMdjt0eZ+LRWKs0blptQJICb7+Lc7uNRLYqPfao4Isz/q2F4oZepjFUfDuXP5CUQ3jRMKbt+hymglMmVYY0LSljX/wpTboxY6uOSYu3+Y=
+  on:
+    tags: true
+    repo: thriqon/parola
