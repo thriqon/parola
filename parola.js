@@ -6,16 +6,16 @@ module.exports = {
 			return typeof x == 'function';
 		}
 
-		var a = [], b = [], arg;
+		var a = [], b = [];
 		var mode;
 
 		function runLater(f) {
-			setTimeout(f, 0, arg);
+			setTimeout(f, 0, b);
 		}
 
 		function setModeAndValue(nm, val) {
 			if (!mode) {
-				arg = val;
+				b = val;
 				nm.forEach(runLater);
 				mode = nm;
 			}
