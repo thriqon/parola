@@ -37,10 +37,10 @@ module.exports = {
 							x = isFunction(this) ? this(x) : x;
 							if (p == x) {
 								q(TypeError());
-							} else if (!x || (x !== Object(x) && !isFunction(x)) || !isFunction((then = x.then))) {
-								r(x);
-							} else {
+              } else if (x && x === Object(x) && isFunction((then = x.then))) {
 								then.call(x, notedReject.bind(0, resolve), notedReject.bind(0, q));
+              } else {
+								r(x);
 							}
 						} catch (e) {
 							notedReject(q, e);
