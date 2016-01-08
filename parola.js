@@ -1,10 +1,30 @@
 
+function isFunction(x) {
+  return typeof x == 'function';
+}
+
+function resolve(d, r, q, p, x,then,k) {
+  function notedReject(ttt, e) {
+    if (!k) {
+      ttt(e);
+      k = 1;
+    }
+  }
+  try {
+    x = isFunction(this) ? this(x) : x;
+    if (p == x) {
+      q(TypeError());
+    } else if (x && x === Object(x) && isFunction((then = x.then))) {
+      then.call(x, notedReject.bind(0, resolve), notedReject.bind(0, q));
+    } else {
+      r(x);
+    }
+  } catch (e) {
+    notedReject(q, e);
+  }
+}
 
 exports.deferred = function deferred() {
-  function isFunction(x) {
-    return typeof x == 'function';
-  }
-
   var a = [], b = [];
   var mode;
 
@@ -25,29 +45,8 @@ exports.deferred = function deferred() {
         var d = deferred();
         var r = d.resolve, q = d.reject, p = d.promise;
 
-        function resolve(x,then,k) {
-          function notedReject(ttt, e) {
-            if (!k) {
-              ttt(e);
-              k = 1;
-            }
-          }
-          try {
-            x = isFunction(this) ? this(x) : x;
-            if (p == x) {
-              q(TypeError());
-            } else if (x && x === Object(x) && isFunction((then = x.then))) {
-              then.call(x, notedReject.bind(0, resolve), notedReject.bind(0, q));
-            } else {
-              r(x);
-            }
-          } catch (e) {
-            notedReject(q, e);
-          }
-        }
-
-        onF = isFunction(onF) ? resolve.bind(onF) : r;
-        onR = isFunction(onR) ? resolve.bind(onR) : q;
+        onF = isFunction(onF) ? resolve.bind(onF, d, r, q, p) : r;
+        onR = isFunction(onR) ? resolve.bind(onR, d, r, q, p) : q;
         if (!mode) {
           a.push(onF);
           b.push(onR);
