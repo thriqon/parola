@@ -53,7 +53,7 @@ module.exports = {
 						a.push(onF);
 						b.push(onR);
 					} else {
-						runLater(mode === a ? onF : onR);
+						runLater(mode == a ? onF : onR);
 					}
 					return p;
 				}
