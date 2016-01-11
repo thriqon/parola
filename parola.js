@@ -15,7 +15,7 @@ function resolve(d, r, q, p, x,then,k) {
     if (p == x) {
       q(TypeError());
     } else if (x && x === Object(x) && isFunction((then = x.then))) {
-      then.call(x, notedReject.bind(0, resolve), notedReject.bind(0, q));
+      then.call(x, notedReject.bind(0, resolve.bind(0,d,r,q,p)), notedReject.bind(0, q));
     } else {
       r(x);
     }
