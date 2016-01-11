@@ -23,8 +23,6 @@ exports.deferred = function deferred() {
       fs.forEach(handle);
     }
   }
-  var resolve1 = setModeAndValue.bind(1);
-  var reject1 = setModeAndValue.bind(2);
 
   return {
     promise:  {
@@ -60,8 +58,8 @@ exports.deferred = function deferred() {
         return p;
       }
     },
-    resolve: resolve1,
-    reject: reject1,
+    resolve: setModeAndValue.bind(1),
+    reject: setModeAndValue.bind(2)
   };
 };
 
