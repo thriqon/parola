@@ -13,7 +13,7 @@ function resolve(d, r, q, p, x,then,k) {
   try {
     x = isFunction(this) ? this(x) : x;
     if (p == x) {
-      q(TypeError());
+      0();
     } else if (x && x === Object(x) && isFunction((then = x.then))) {
       then.call(x, notedReject.bind(0, resolve.bind(0,d,r,q,p)), notedReject.bind(0, q));
     } else {
