@@ -2,7 +2,7 @@
 
 exports.deferred = function deferred() {
   function isFunction(x,a) {
-    return (typeof x == 'function'?x:a);
+    return (typeof x == typeof handle?x:a);
   }
 
   var fs = [], b;
