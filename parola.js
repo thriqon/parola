@@ -34,8 +34,8 @@ exports.deferred = function deferred() {
           function notedReject(ttt, e) {
             if (!k) {
               ttt(e);
-              k = 1;
             }
+            k = 1;
           }
           try {
             x = l ? l(x) : x;
