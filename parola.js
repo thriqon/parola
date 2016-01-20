@@ -30,10 +30,10 @@ exports.deferred = function deferred() {
         var d = deferred();
         var r = d.resolve, q = d.reject, p = d.promise;
 
-        function resolve(l, x,then,k) {
-          function notedReject(ttt, e) {
+        function resolve(l, x,k) {
+          function notedReject(e) {
             if (!k) {
-              ttt(e);
+              this(e);
             }
             k = 1;
           }
@@ -41,13 +41,13 @@ exports.deferred = function deferred() {
             x = l ? l(x) : x;
             if (p == x) {
               0();
-            } else if (x && x === Object(x) && isFunction((then = x.then))) {
-              then.call(x, notedReject.bind(0, resolve.bind(0, 0)), notedReject.bind(0, q));
+            } else if (x && x === Object(x) && isFunction((l = x.then))) {
+              l.call(x, notedReject.bind(resolve.bind(0, 0)), notedReject.bind(q));
             } else {
               r(x);
             }
           } catch (e) {
-            notedReject(q, e);
+            k || q(e);
           }
         }
 
