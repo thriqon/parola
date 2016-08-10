@@ -7,6 +7,7 @@ cache:
 
 script:
 - npm run build
+- du -b parola.min.js
 - npm test
 
 deploy:
