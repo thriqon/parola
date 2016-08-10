@@ -32,10 +32,7 @@ exports.deferred = function deferred() {
 
         function resolve(l, x,k) {
           function notedReject(e) {
-            if (!k) {
-              this(e);
-            }
-            k = 1;
+            k=k||this(e);
           }
           try {
             x = l ? l(x) : x;
