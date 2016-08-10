@@ -41,7 +41,8 @@ exports.deferred = function deferred() {
             x = l ? l(x) : x;
             if (p == x) {
               0();
-            } else if (x && x === Object(x) && isFunction((l = x.then))) {
+            }
+            if (x && x === Object(x) && isFunction((l = x.then))) {
               l.call(x, notedReject.bind(resolve.bind(0, 0)), notedReject.bind(q));
             } else {
               r(x);
